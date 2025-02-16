@@ -9,7 +9,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+   height: 94vh; 
+background-color: #111519;
 }
 
 /* کانتینر چت */
