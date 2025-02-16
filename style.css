@@ -1,0 +1,119 @@
+/* تنظیمات کلی */
+*{
+  font-family:"Baloo Bhaijaan 2";
+   
+}
+body {
+  margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* کانتینر چت */
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+      
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* هدر چت */
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* بدنه چت */
+.chat-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background-color:#111519 ;
+
+}
+
+/* پیام‌ها */
+.message {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message.user {
+    align-items: flex-end;
+}
+
+.message.bot {
+    align-items: flex-start;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message.user .message-content {
+    background-color:rgba(250,250,250,0.06) ;
+backdrop-filter: blur(8px);
+ 
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.bot .message-content {
+    background-color:rgba(250,250,250,0.06) ;
+backdrop-filter: blur(8px);
+ 
+
+    color: #fff;
+    border-bottom-left-radius: 4px;
+}
+
+/* فوتور چت */
+.chat-footer {
+    display: flex;
+    padding: 12px;
+    background-color:#111519;
+    border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 14px;
+    outline: none;
+   background-color:rgba(250,250,250,0.06) ;
+backdrop-filter: blur(8px);
+color: #fff;
+}
+
+.chat-footer button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-right: 8px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.chat-footer button:hover {
+    background-color: #0056b3;
+}
