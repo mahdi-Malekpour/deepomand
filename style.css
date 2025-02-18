@@ -27,7 +27,10 @@ background-color: #111519;
 
 /* هدر چت */
 .chat-header {
-    background-color: #007bff;
+    
+   background-color:rgba(250,250,250,0.01) ;
+backdrop-filter: blur(18px);
+box-shadow: 0px 0px 8px 2px #000;
     color: white;
     padding: 16px;
     text-align: center;
@@ -72,7 +75,7 @@ height: 100%;
 backdrop-filter: blur(8px);
  
     color: white;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .message.bot .message-content {
@@ -81,7 +84,7 @@ backdrop-filter: blur(8px);
  
 
     color: #fff;
-    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 /* فوتور چت */
@@ -105,9 +108,12 @@ color: #fff;
 }
 
 .chat-footer button {
-    background-color: #007bff;
+        background-color:rgba(250,250,250,0.06) ;
+backdrop-filter: blur(8px);
+
     color: white;
     border: none;
+box-shadow: 0px 0px 10px 0px #000;
     padding: 12px 20px;
     margin-right: 8px;
     border-radius: 14px;
@@ -116,5 +122,42 @@ color: #fff;
 }
 
 .chat-footer button:hover {
-    background-color: #0056b3;
+    background-color: #000000;
+}
+/* حالت در حال تایپ */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #272726;
+    border-radius: 12px;
+    width: 40px;
+    margin-bottom: 12px;
+border: 1px solid #CBCBCB;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #666;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
 }
