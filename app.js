@@ -1,9 +1,13 @@
 // تابع ارسال پیام
 function sendMessage() {
+  const btn = document.getElementById('btn');
+ 
     const input = document.getElementById('chat-input');
     const messageu = input.value.trim();
 
     if (messageu) {
+btn.style.backgroundColor= '#111519'
+
         // افزودن پیام کاربر به چت
         const chatBody = document.getElementById('chat-body');
         chatBody.innerHTML += `
@@ -32,7 +36,7 @@ function sendMessage() {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         // کلید API
-        const apiKey = '78478a957f1c4c10bba78a1acf2d3401'; // جایگزین <YOUR_API_KEY> با کلید خود
+        const apiKey = '551d632da32d49fca6567cb7a0c0e25b'; // جایگزین <YOUR_API_KEY> با کلید خود
 
         // آدرس API
         const apiUrl = 'https://api.aimlapi.com/v1/chat/completions'; // endpoint صحیح
@@ -83,6 +87,7 @@ function sendMessage() {
                     </div>
                 </div>
             `;
+btn.style.backgroundColor ="#6A83CC" 
 
             // اسکرول به پایین
             chatBody.scrollTop = chatBody.scrollHeight;
