@@ -52,18 +52,23 @@ height: 100%;
     margin-bottom: 12px;
     display: flex;
     flex-direction: column;
+    /* max-width: 200px; */
 }
 
 .message.user {
     align-items: flex-end;
+    
 }
 
 .message.bot {
     align-items: flex-start;
+    
 }
 
 .message-content {
-    max-width: 70%;
+    word-wrap: inherit;
+    
+    max-width:260px;
     padding: 12px;
     border-radius: 12px;
     font-size: 14px;

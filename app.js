@@ -12,9 +12,9 @@ btn.style.backgroundColor= '#111519'
         const chatBody = document.getElementById('chat-body');
         chatBody.innerHTML += `
             <div class="message user">
-                <div class="message-content">
+                <span class="message-content">
                     ${messageu}
-                </div>
+                </span>
             </div>
         `;
 
@@ -43,7 +43,7 @@ btn.style.backgroundColor= '#111519'
 
         // داده‌های درخواست
         const requestData = {
-            model: "gpt-4o", // مدل مورد استفاده
+            model: "gpt-4o-mini", // مدل مورد استفاده
             messages: [
                 {
                     role: "system",
