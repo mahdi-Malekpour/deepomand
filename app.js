@@ -1,10 +1,14 @@
-// تابع ارسال پیام
+
+// تابع ارسال پیام (با تغییرات جدید)
 function sendMessage() {
-  const btn = document.getElementById('btn');
+ const aiIntro = document.querySelector('.ai-intro');
+    if (aiIntro) {
+        aiIntro.remove();
+    }
+ const btn = document.getElementById('btn');
  
     const input = document.getElementById('chat-input');
     const messageu = input.value.trim();
-
     if (messageu) {
 btn.style.backgroundColor= '#111519'
 
@@ -36,14 +40,14 @@ btn.style.backgroundColor= '#111519'
         chatBody.scrollTop = chatBody.scrollHeight;
 
         // کلید API
-        const apiKey = '551d632da32d49fca6567cb7a0c0e25b'; // جایگزین <YOUR_API_KEY> با کلید خود
+        const apiKey = '2ae75bc0af94466c90e602663063d30e'; // جایگزین <YOUR_API_KEY> با کلید خود
 
         // آدرس API
         const apiUrl = 'https://api.aimlapi.com/v1/chat/completions'; // endpoint صحیح
 
         // داده‌های درخواست
         const requestData = {
-            model: "gpt-4o-mini", // مدل مورد استفاده
+            model: "openai/o4-mini-2025-04-16", // مدل مورد استفاده
             messages: [
                 {
                     role: "system",
