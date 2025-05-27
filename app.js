@@ -1,6 +1,27 @@
+// ذخیرهٔ چت
+function saveChat() {
+    const chatBody = document.getElementById('chat-body').innerHTML;
+    localStorage.setItem('chatHistory', chatBody);
+}
 
+// بازیابی چت
+function loadChat() {
+    const savedChat = localStorage.getItem('chatHistory');
+    if (savedChat) {
+        document.getElementById('chat-body').innerHTML = savedChat;
+    }
+}
+
+// فراخوانی هنگام لود صفحه
+document.addEventListener('DOMContentLoaded', loadChat);
+
+// ذخیره پس از هر پیام جدید
+
+    // ... کدهای ارسال پیام
+     // اضافه کردن این خط
 // تابع ارسال پیام (با تغییرات جدید)
 function sendMessage() {
+   
  const aiIntro = document.querySelector('.ai-intro');
     if (aiIntro) {
         aiIntro.remove();
@@ -125,5 +146,6 @@ btn.style.backgroundColor ="#6A83CC"
             // اسکرول به پایین
             chatBody.scrollTop = chatBody.scrollHeight;
         });
-    }
+    } 
+    saveChat();
 }
