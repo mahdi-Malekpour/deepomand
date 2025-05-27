@@ -113,7 +113,7 @@ btn.style.backgroundColor= '#111519'
                 </div>
             `;
 btn.style.backgroundColor ="#6A83CC" 
- 
+ saveChat();
             // اسکرول به پایین
             chatBody.scrollTop = chatBody.scrollHeight;
         })
@@ -147,5 +147,5 @@ btn.style.backgroundColor ="#6A83CC"
             chatBody.scrollTop = chatBody.scrollHeight;
         });
     } 
-    saveChat();
+    
 }
