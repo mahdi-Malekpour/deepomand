@@ -19,7 +19,7 @@ background-color: #fafafa;
     max-width: 900px;
       
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow:auto;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -28,9 +28,10 @@ background-color: #fafafa;
 /* هدر چت */
 .chat-header {
     
-   background-color:rgba(231, 231, 231, 0.01) ;
-backdrop-filter: blur(18px);
-box-shadow: 0px 0px 10px 1px #6A83CC;
+   background-color:rgb(255, 255, 255) ;
+/* backdrop-filter: blur(18px); */
+box-shadow: 0px 0px 10px 2px #4c61a1;
+border-bottom: 2px solid #525252;
     color: rgb(7, 7, 7);
     padding: 16px;
     text-align: center;
@@ -43,7 +44,7 @@ box-shadow: 0px 0px 10px 1px #6A83CC;
     flex: 1;
     padding: 16px;
     overflow-y: auto;
-    background-color:#f4f4f4 ;
+    background-color:#f0f0f0 ;
 height: 100%;
 }
 

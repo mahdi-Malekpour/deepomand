@@ -5,62 +5,205 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
  <meta name="google-site-verification" content="Rac3unONxNlql8mVp5iWv2AceIcBXIsVlbAx7fljDfQ" />
    <meta charset="UTF-8">
+   <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- برای مرورگرهای جدید (PNG/SVG) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- برای اپل آیفون -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- برای اندروید -->
+    <link rel="manifest" href="site.webmanifest">
  <link rel="icon" type="image/x-icon" href="InShot_20250219_000853519.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> M3 AI| چت هوش مصنوعی</title>
-    <link rel="stylesheet" href="style.css">
+    <title> M3 AI - هوش مصنوعی</title>
+    
+
+
+    <style>
+        /* ریست و فونت */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:"Baloo Bhaijaan 2";
+   
+}
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* بخش ربات */
+        .robot-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: -80px;
+        }
+        
+        .robot-shape {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            clip-path: polygon(
+                50% 20%, 
+                80% 20%,
+                90% 50%,
+                80% 80%,
+                20% 100%,
+                /* 20% 80%, */
+                10% 50%,
+                20% 20%
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            
+        }
+        
+        .robot-icon {
+            font-size: 5rem;
+            color: white;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* محتوای اصلی */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        /* دکمه */
+        .chat-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chat-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(110, 142, 251, 0.5);
+        }
+        
+        .chat-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0.3),
+                rgba(255,255,255,0)
+            );
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        
+        .chat-btn:hover::after {
+            left: 100%;
+        }
+        
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .robot-shape {
+                width: 200px;
+                height: 250px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="chat-container">
-        <!-- هدر چت -->
-        <div class="chat-header">
-           M3 AI 
-        </div>
-
-        <!-- بدنه چت -->
-        <div class="chat-body" id="chat-body">
-            <!-- پیام‌های چت -->
-             <div class="ai-intro">
-    <h1>M3 AI - هوش مصنوعی نسل جدید برای حل چالش‌های دیجیتال</h1>
-    
-    <p>به <strong>M3 AI</strong> خوش آمدید! من یک دستیار هوشمند مبتنی بر پیشرفته‌ترین فناوری‌های پردازش زبان طبیعی (NLP) هستم که می‌توانم در زمینه‌های زیر به شما کمک کنم:</p>
-    
-    <ul>
-        <li>پاسخ به سوالات تخصصی در حوزه فناوری و هوش مصنوعی</li>
-        <li>تحلیل و پردازش داده‌های متنی</li>
-        <li>پیشنهاد راهکارهای هوشمند برای کسب‌وکارها</li>
-        <li>تولید محتوای بهینه‌شده برای سئو</li>
-    </ul>
-
-    <h2>چرا M3 AI را انتخاب کنید؟</h2>
-    
-    <p>سیستم من با بهره‌گیری از الگوریتم‌های <strong>یادگیری عمیق</strong> و <strong>شبکه‌های عصبی</strong> طراحی شده است که امکان درک و پردازش پیشرفته زبان طبیعی را فراهم می‌کند. این فناوری من را قادر می‌سازد تا:</p>
-    
-    <ol>
-        <li>پاسخ‌های دقیق و متناسب با نیاز کاربر ارائه دهم</li>
-        <li>پیچیده‌ترین سوالات را در کوتاه‌ترین زمان تحلیل کنم</li>
-        <li>به صورت پیوسته از تعاملات یاد بگیرم و بهبود یابم</li>
-    </ol>
-
-    <div class="seo-keywords">
-        <p><em>کلمات کلیدی مرتبط: هوش مصنوعی، دستیار هوشمند، پردازش زبان طبیعی، فناوری NLP، یادگیری ماشین، ربات چت هوشمند، M3 AI، راهکارهای هوش مصنوعی</em></p>
-    </div>
-</div>
-            <div class="message bot">
-            </div>
-            <div class="message user">
-            </div>
-            <div class="message bot">
-            </div>
-        </div>
-        <!-- فوتور چت -->
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="پیام خود را بنویسید...">
-            <button id="btn" onclick="sendMessage()">ارسال</button>
+    <!-- بخش ربات -->
+    <div class="robot-container">
+        <div class="robot-shape">
+            <i class="robot-icon fas fa-robot"></i>
         </div>
     </div>
- 
-    <script src="app.js"></script>
+    
+    <!-- محتوای اصلی -->
+    <div class="main-content">
+        <h1 class="title">هوش مصنوعی نوآورانه</h1>
+        <h2 class="subtitle">شکل‌دهی به آینده</h2>
+        
+        <div class="divider"></div>
+        
+        <p class="description">
+            هوش مصنوعی در حال دگرگون‌سازی جهان است. با فناوری پیشرفته ما، آینده را امروز تجربه کنید.
+        </p>
+        
+        <a href="chat.html" class="chat-btn">شروع گفتگو</a>
+    </div>
+
 </body>
 </html>

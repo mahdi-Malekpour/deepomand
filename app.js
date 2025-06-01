@@ -61,14 +61,14 @@ btn.style.backgroundColor= '#111519'
         chatBody.scrollTop = chatBody.scrollHeight;
 
         // کلید API
-        const apiKey = '2ae75bc0af94466c90e602663063d30e'; // جایگزین <YOUR_API_KEY> با کلید خود
+        const apiKey = '16d5de8540d3476b8d0b4d6ee2872bd5'; // جایگزین <YOUR_API_KEY> با کلید خود
 
         // آدرس API
         const apiUrl = 'https://api.aimlapi.com/v1/chat/completions'; // endpoint صحیح
 
         // داده‌های درخواست
         const requestData = {
-            model: "openai/o4-mini-2025-04-16", // مدل مورد استفاده
+            model: "gpt-4-turbo-2024-04-09", // مدل مورد استفاده
             messages: [
                 {
                     role: "system",
