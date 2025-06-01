@@ -97,6 +97,7 @@ backdrop-filter: blur(8px);
 .chat-footer {
     display: flex;
     padding: 12px;
+    gap: 10px;
     background-color:#ffffff;
     border-top: 1px solid #8C8C8C;
 }
@@ -114,7 +115,7 @@ color: #090909;
 }
 
 .chat-footer button {
-        background-color:#6A83CC ;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
     border: 1px solid #8C8C8C;
 
     color: white;

@@ -31,7 +31,7 @@ function sendMessage() {
     const input = document.getElementById('chat-input');
     const messageu = input.value.trim();
     if (messageu) {
-btn.style.backgroundColor= '#111519'
+btn.style.background= '#111519'
 
         // افزودن پیام کاربر به چت
         const chatBody = document.getElementById('chat-body');
@@ -112,7 +112,7 @@ btn.style.backgroundColor= '#111519'
                     </div>
                 </div>
             `;
-btn.style.backgroundColor ="#6A83CC" 
+btn.style.background ="linear-gradient(135deg, #6e8efb, #a777e3)" 
  saveChat();
             // اسکرول به پایین
             chatBody.scrollTop = chatBody.scrollHeight;
