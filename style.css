@@ -32,7 +32,8 @@ background-color: #fafafa;
 /* backdrop-filter: blur(18px); */
 box-shadow: 0px 0px 10px 2px #4c61a1;
 border-bottom: 2px solid #525252;
-    color: rgb(7, 7, 7);
+    color: #6e8efb;
+
     padding: 16px;
     text-align: center;
     font-size: 18px;
@@ -95,6 +96,7 @@ backdrop-filter: blur(8px);
 
 /* فوتور چت */
 .chat-footer {
+    margin-top: 4px;
     display: flex;
     padding: 12px;
     gap: 10px;

@@ -1,209 +1,201 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
- <meta name="google-site-verification" content="Rac3unONxNlql8mVp5iWv2AceIcBXIsVlbAx7fljDfQ" />
-   <meta charset="UTF-8">
-   <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- برای مرورگرهای جدید (PNG/SVG) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    
-    <!-- برای اپل آیفون -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    
-    <!-- برای اندروید -->
-    <link rel="manifest" href="site.webmanifest">
- <link rel="icon" type="image/x-icon" href="InShot_20250219_000853519.jpg">
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Deepomend - دیپومنت</title>
+    <title>دیپومند | deepomand</title>
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <meta name="description" content="پلتفرم هوش مصنوعی دیپومند با قابلیت‌های یادگیری عمیق و پردازش زبان طبیعی. تجربه گفتگوی هوشمند را با ما امتحان کنید.">
+    <meta name="keywords" content="دیپومند, چت بات هوش مصنوعی, هوش مصنوعی فارسی, یادگیری عمیق">
+    <meta property="og:title" content="دیپومند | هوش مصنوعی ژرف‌اندیش">
+<meta property="og:description" content="چت بات هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق">
+<meta property="og:image" content="https://deepomand.com/images/og-image.jpg">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "دیپومند",
+      "url": "https://deepomand.com",
+      "applicationCategory": "Chatbot",
+      "operatingSystem": "Web"
+    }
+    </script>
     
-
-
     <style>
-        /* ریست و فونت */
+        /* Reset */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family:"Baloo Bhaijaan 2";
+        
+  font-family:"Baloo Bhaijaan 2";
    
-}
+
+        }
         
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            min-height: 100vh;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            color: #2c3e50;
+            line-height: 1.6;
         }
         
-        /* بخش ربات */
-        .robot-container {
-            position: relative;
-            height: 300px;
-            margin-bottom: -80px;
+        /* هدر */
+        header {
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
         }
         
-        .robot-shape {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            clip-path: polygon(
-                50% 20%, 
-                80% 20%,
-                90% 50%,
-                80% 80%,
-                20% 100%,
-                /* 20% 80%, */
-                10% 50%,
-                20% 20%
-            );
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #6e8efb;
+            padding: 20px 0;
+        }
+        
+        /* بخش اصلی */
+        .hero {
+            min-height: 100vh;
+            display: flex;
             align-items: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            
+            padding-top: 80px;
+            text-align: center;
         }
         
-        .robot-icon {
-            font-size: 5rem;
-            color: white;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        /* محتوای اصلی */
-        .main-content {
+        .hero-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
         }
         
-        .title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #2c3e50;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .subtitle {
+        .tagline {
             font-size: 1.5rem;
             color: #7f8c8d;
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
         }
         
         .divider {
             width: 100px;
             height: 4px;
             background: linear-gradient(to right, #6e8efb, #a777e3);
-            margin: 1.5rem auto;
+            margin: 30px auto;
             border-radius: 2px;
         }
         
         .description {
             font-size: 1.1rem;
             color: #555;
-            margin-bottom: 3rem;
-            line-height: 1.6;
+            margin-bottom: 40px;
+            line-height: 1.8;
         }
         
-        /* دکمه */
+        /* دکمه چت */
         .chat-btn {
             display: inline-block;
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 15px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4);
             border: none;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
         
         .chat-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(110, 142, 251, 0.5);
-        }
-        
-        .chat-btn::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255,255,255,0.3),
-                rgba(255,255,255,0)
-            );
-            transform: rotate(30deg);
-            transition: all 0.3s;
-        }
-        
-        .chat-btn:hover::after {
-            left: 100%;
         }
         
         /* ریسپانسیو */
         @media (max-width: 768px) {
-            .robot-shape {
-                width: 200px;
-                height: 250px;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .title {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
+            .tagline {
                 font-size: 1.2rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- بخش ربات -->
-    <div class="robot-container">
-        <div class="robot-shape">
-            <i class="robot-icon fas fa-robot"></i>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="logo">دیپومند</div>
+            <div class="logo">deepomand</div>
         </div>
-    </div>
+    </header>
     
     <!-- محتوای اصلی -->
-    <div class="main-content">
-        <h1 class="title">هوش مصنوعی  دیپومنت</h1>
-        <h2 class="subtitle">شکل‌دهی به آینده</h2>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>هوش مصنوعی ژرف‌اندیش</h1>
+                <p class="tagline">تجربه گفتگوی هوشمند با فناوری یادگیری عمیق</p>
+                
+                <div class="divider"></div>
+                
+                <p class="description">
+                    دیپومند یک پلتفرم پیشرفته هوش مصنوعی است که با استفاده از الگوریتم‌های یادگیری عمیق، 
+                    قادر به درک و پردازش زبان طبیعی فارسی است. از چت بات هوشمند ما برای پاسخ به سوالات تخصصی، 
+                    تحلیل داده‌ها و خودکارسازی فرآیندها استفاده کنید.
+                </p>
+                
+                <a href="chat.html" class="chat-btn">شروع گفتگو</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+    <div class="container">
         
-        <div class="divider"></div>
         
-        <p class="description">
-            هوش مصنوعی در حال دگرگون‌سازی جهان است. با فناوری پیشرفته ما، آینده را امروز تجربه کنید.
-        </p>
-        
-        <a href="chat.html" class="chat-btn">شروع گفتگو</a>
     </div>
-
+</footer>
+    <!-- اسکریپت‌های سئو -->
+    <script>
+        // ثبت رویداد کلیک دکمه در گوگل آنالیتیکس
+        document.querySelector('.chat-btn').addEventListener('click', function() {
+            gtag('event', 'navigate_to_chat', {
+                'event_category': 'engagement',
+                'event_label': 'homepage_chat_button'
+            });
+        });
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXX');
+    </script>
 </body>
 </html>
