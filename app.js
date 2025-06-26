@@ -44,6 +44,7 @@ class DeepomandChat {
 
     // تغییر ظاهر دکمه
     this.sendButton.style.background = '#111519';
+    // this.sendButton.style. = '#111519';
 
     // افزودن پیام کاربر
     this.addUserMessage(message);
@@ -114,7 +115,7 @@ class DeepomandChat {
       // فرمت‌دهی کدهای مارک‌داون
       messageDiv.innerHTML = this.formatMarkdown(content);
     } else {
-      const contentSpan = document.createElement('span');
+      const contentSpan = document.createElement('div');
       contentSpan.className = 'message-content';
       contentSpan.textContent = content;
       messageDiv.appendChild(contentSpan);
