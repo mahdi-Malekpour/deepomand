@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دیپومند | deepomand</title>
-     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
- <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico">
-    <meta name="description" content="پلتفرم هوش مصنوعی دیپومند با قابلیت‌های یادگیری عمیق و پردازش زبان طبیعی. تجربه گفتگوی هوشمند را با ما امتحان کنید.">
-    <meta name="keywords" content="دیپومند, چت بات هوش مصنوعی, هوش مصنوعی فارسی, یادگیری عمیق">
+    <meta name="description" content="دیپومند - پلتفرم پیشرفته هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق و پردازش زبان طبیعی برای گفتگوی هوشمند">
+    <meta name="keywords" content="هوش مصنوعی فارسی, چت بات, دیپومند, یادگیری عمیق, پردازش زبان طبیعی, NLP">
+    <meta name="theme-color" content="#6e8efb">
     <meta property="og:title" content="دیپومند | هوش مصنوعی ژرف‌اندیش">
-<meta property="og:description" content="چت بات هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق">
-<meta property="og:image" content="https://deepomand.com/images/og-image.jpg">
+    <meta property="og:description" content="چت بات هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق">
+    <meta property="og:image" content="https://deepomand.com/images/og-image.jpg">
+    <meta property="og:url" content="https://deepomand.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://deepomand.com">
+    <link rel="alternate" hreflang="fa" href="https://deepomand.com/fa">
+    <title>دیپومند | هوش مصنوعی ژرف‌اندیش برای گفتگوی هوشمند</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap"></noscript>
+    
+    <link rel="preload" href="favicon.ico" as="image" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico">
+    
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -20,147 +31,241 @@
       "@type": "WebApplication",
       "name": "دیپومند",
       "url": "https://deepomand.com",
-      "applicationCategory": "Chatbot",
-      "operatingSystem": "Web"
+      "description": "پلتفرم هوش مصنوعی فارسی با قابلیت گفتگوی هوشمند",
+      "applicationCategory": "ChatbotApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IRR"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "دیپومند"
+      }
     }
     </script>
     
     <style>
-        /* Reset */
-
-        * {
+        :root {
+            --primary: #6e8efb;
+            --secondary: #a777e3;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg: #f5f7fa;
+            --bg-secondary: #e4e8eb;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f5f7fa;
+                --text-light: #bdc3c7;
+                --bg: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --white: #2d2d2d;
+                --shadow: 0 2px 10px rgba(0,0,0,0.3);
+            }
+        }
+        
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        
-  font-family:"Baloo Bhaijaan 2";
-   
-
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-            color: #2c3e50;
+            font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        /* هدر */
+        /* Header */
         header {
             background: rgba(255,255,255,0.9);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             z-index: 100;
+            transition: var(--transition);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            header {
+                background: rgba(45,45,45,0.9);
+            }
         }
         
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1.5rem;
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
         }
         
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #6e8efb;
-            padding: 20px 0;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        /* بخش اصلی */
+        .logo-secondary {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            padding-top: 5rem;
+        }
+        
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 5rem);
             display: flex;
             align-items: center;
-            padding-top: 80px;
-            text-align: center;
+            padding: 2rem 0;
         }
         
         .hero-content {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
+            padding: 0 1rem;
         }
         
         h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
         
         .tagline {
-            font-size: 1.5rem;
-            color: #7f8c8d;
-            margin-bottom: 30px;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-light);
+            margin-bottom: 2rem;
         }
         
         .divider {
             width: 100px;
             height: 4px;
-            background: linear-gradient(to right, #6e8efb, #a777e3);
-            margin: 30px auto;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 2rem auto;
             border-radius: 2px;
         }
         
         .description {
             font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 40px;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
             line-height: 1.8;
         }
         
-        /* دکمه چت */
+        /* Chat Button */
         .chat-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            padding: 15px 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-size: 1.2rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4);
             border: none;
             cursor: pointer;
+            width: fit-content;
+            margin: 0 auto;
         }
         
-        .chat-btn:hover {
-            transform: translateY(-5px);
+        .chat-btn:hover, .chat-btn:focus {
+            transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(110, 142, 251, 0.5);
         }
         
-        /* ریسپانسیو */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            margin-top: auto;
         }
+        
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-content > * {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.5s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.7s; }
+        .hero-content > *:nth-child(5) { animation-delay: 0.9s; }
     </style>
 </head>
 <body>
     <!-- هدر -->
     <header>
-        <div class="container">
-            <div class="logo">دیپومند</div>
-            <div class="logo">deepomand</div>
+        <div class="container header-container">
+            <a href="/" class="logo">
+                دیپومند
+                
+            </a><span class="logo">deepomand</span>
         </div>
     </header>
     
     <!-- محتوای اصلی -->
     <main>
-        <section class="hero">
+        <section class="hero" aria-labelledby="main-heading">
             <div class="hero-content">
-                <h1>هوش مصنوعی ژرف‌اندیش</h1>
+                <h1 id="main-heading">هوش مصنوعی ژرف‌اندیش</h1>
                 <p class="tagline">تجربه گفتگوی هوشمند با فناوری یادگیری عمیق</p>
                 
-                <div class="divider"></div>
+                <div class="divider" aria-hidden="true"></div>
                 
                 <p class="description">
                     دیپومند یک پلتفرم پیشرفته هوش مصنوعی است که با استفاده از الگوریتم‌های یادگیری عمیق، 
@@ -168,35 +273,63 @@
                     تحلیل داده‌ها و خودکارسازی فرآیندها استفاده کنید.
                 </p>
                 
-                <a href="chat.html" class="chat-btn">شروع گفتگو</a>
+                <a href="chat.html" class="chat-btn" aria-label="شروع گفتگو با چت بات">
+                    شروع گفتگو
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
         </section>
     </main>
     
+    <!-- فوتر -->
     <footer>
-    <div class="container">
-        
-        
-    </div>
-</footer>
-    <!-- اسکریپت‌های سئو -->
-    <script>
-        // ثبت رویداد کلیک دکمه در گوگل آنالیتیکس
-        document.querySelector('.chat-btn').addEventListener('click', function() {
-            gtag('event', 'navigate_to_chat', {
-                'event_category': 'engagement',
-                'event_label': 'homepage_chat_button'
-            });
-        });
-    </script>
+        <div class="container footer-container">
+            <p class="copyright">© ۱۴۰۴ دیپومند - تمام حقوق محفوظ است</p>
+        </div>
+    </footer>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
+    <!-- اسکریپت‌های بهینه‌شده -->
     <script>
+        // Load Google Analytics non-blocking
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXX');
+        
+        // Defer analytics loading
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXX';
+            script.async = true;
+            document.head.appendChild(script);
+            
+            gtag('config', 'G-XXXXXX', {
+                page_title: document.title,
+                page_path: window.location.pathname
+            });
+        }, 1000);
+        
+        // Track button clicks
+        document.querySelector('.chat-btn').addEventListener('click', function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'navigate_to_chat', {
+                    'event_category': 'engagement',
+                    'event_label': 'homepage_chat_button'
+                });
+            }
+        });
+        
+        // Add service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
     </script>
 </body>
 </html>
