@@ -1,67 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
- <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico">
-    
-   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Deepomend | چت هوش مصنوعی</title></head>
- <link rel="stylesheet" href="style.css">
+    <title>دیپومند | چت هوش مصنوعی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        :root {
+            --primary: #6e8efb;
+            --secondary: #a777e3;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg: #fafafa;
+            --bg-secondary: #f0f0f0;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 14px;
+            --transition: all 0.2s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f5f7fa;
+                --text-light: #bdc3c7;
+                --bg: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --white: #2d2d2d;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Baloo Bhaijaan 2", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg);
+            transition: var(--transition);
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 900px;
+            height: 100vh;
+            max-height: 900px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg);
+        }
+
+        .chat-header {
+            background-color: var(--white);
+            box-shadow: 0px 0px 10px 2px rgba(76, 97, 161, 0.2);
+            border-bottom: 1px solid var(--bg-secondary);
+            color: var(--primary);
+            padding: 16px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background-color: var(--bg-secondary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-intro {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        .ai-intro h1 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ai-intro h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 15px 0 10px;
+        }
+
+        .ai-intro p, .ai-intro li {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .ai-intro ul, .ai-intro ol {
+            padding-right: 20px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.user {
+            align-self: flex-end;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message-content {
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .message.user .message-content {
+            background-color: var(--white);
+            color: var(--text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background-color: var(--white);
+            color: var(--text);
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-footer {
+            display: flex;
+            padding: 12px;
+            gap: 10px;
+            background-color: var(--white);
+            border-top: 1px solid var(--bg-secondary);
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--bg-secondary);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            outline: none;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .chat-footer input:focus {
+            border-color: var(--primary);
+        }
+
+        .chat-footer button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .chat-footer button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            width: 60px;
+            margin-bottom: 12px;
+            border: 1px solid var(--bg-secondary);
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-light);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* اسکرول بار */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                height: 100vh;
+                max-height: none;
+            }
+            
+            .ai-intro h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
-    <body dir="rtl">
+<body>
     <div class="chat-container">
-        <!-- هدر چت -->
         <div class="chat-header">
-           Deepomend 
+            <button class="theme-toggle" id="theme-toggle">🌓</button>
+            دیپومند
         </div>
 
-        <!-- بدنه چت -->
         <div class="chat-body" id="chat-body">
-            <!-- پیام‌های چت -->
-             <div class="ai-intro">
-    <h1>دیپومند - هوش مصنوعی نسل جدید برای حل چالش‌های دیجیتال</h1>
-    
-    <p>به <strong> Deepomend </strong> خوش آمدید! من یک دستیار هوشمند مبتنی بر پیشرفته‌ترین فناوری‌های پردازش زبان طبیعی (NLP) هستم که می‌توانم در زمینه‌های زیر به شما کمک کنم:</p>
-    
-    <ul>
-        <li>پاسخ به سوالات تخصصی در حوزه فناوری و هوش مصنوعی</li>
-        <li>تحلیل و پردازش داده‌های متنی</li>
-        <li>پیشنهاد راهکارهای هوشمند برای کسب‌وکارها</li>
-        <li>تولید محتوای بهینه‌شده برای سئو</li>
-    </ul>
+            <div class="ai-intro">
+                <h1>دیپومند - هوش مصنوعی نسل جدید برای حل چالش‌های دیجیتال</h1>
+                
+                <p>به <strong>دیپومند</strong> خوش آمدید! من یک دستیار هوشمند مبتنی بر پیشرفته‌ترین فناوری‌های پردازش زبان طبیعی (NLP) هستم که می‌توانم در زمینه‌های زیر به شما کمک کنم:</p>
+                
+                <ul>
+                    <li>پاسخ به سوالات تخصصی در حوزه فناوری و هوش مصنوعی</li>
+                    <li>تحلیل و پردازش داده‌های متنی</li>
+                    <li>پیشنهاد راهکارهای هوشمند برای کسب‌وکارها</li>
+                    <li>تولید محتوای بهینه‌شده برای سئو</li>
+                </ul>
 
-    <h2>چرا دیپومند را انتخاب کنید؟</h2>
-    
-    <p>سیستم من با بهره‌گیری از الگوریتم‌های <strong>یادگیری عمیق</strong> و <strong>شبکه‌های عصبی</strong> طراحی شده است که امکان درک و پردازش پیشرفته زبان طبیعی را فراهم می‌کند. این فناوری من را قادر می‌سازد تا:</p>
-    
-    <ol>
-        <li>پاسخ‌های دقیق و متناسب با نیاز کاربر ارائه دهم</li>
-        <li>پیچیده‌ترین سوالات را در کوتاه‌ترین زمان تحلیل کنم</li>
-        <li>به صورت پیوسته از تعاملات یاد بگیرم و بهبود یابم</li>
-    </ol>
-
-    <div class="seo-keywords">
-        <p><em>کلمات کلیدی مرتبط: هوش مصنوعی، دستیار هوشمند، پردازش زبان طبیعی، فناوری NLP، یادگیری ماشین، ربات چت هوشمند، M3 AI، راهکارهای هوش مصنوعی</em></p>
-    </div>
-</div>
-            <div class="message bot">
-            </div>
-            <div class="message user">
-            </div>
-            <div class="message bot">
+                <h2>چرا دیپومند را انتخاب کنید؟</h2>
+                
+                <p>سیستم من با بهره‌گیری از الگوریتم‌های <strong>یادگیری عمیق</strong> و <strong>شبکه‌های عصبی</strong> طراحی شده است که امکان درک و پردازش پیشرفته زبان طبیعی را فراهم می‌کند.</p>
             </div>
         </div>
-        <!-- فوتور چت -->
+
         <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="پیام خود را بنویسید...">
-            <button id="btn" onclick="sendMessage()">ارسال</button>
+            <input type="text" id="chat-input" placeholder="پیام خود را بنویسید..." autocomplete="off">
+            <button id="btn">ارسال</button>
         </div>
     </div>
 
+  
     <script src="app.js"></script>
 </body>
 </html>
