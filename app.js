@@ -1,151 +1,209 @@
-// ذخیرهٔ چت
-function saveChat() {
-    const chatBody = document.getElementById('chat-body').innerHTML;
-    localStorage.setItem('chatHistory', chatBody);
-}
+class DeepomandChat {
+  constructor() {
+    this.API_KEY = 'd297bb116174444199bb116a3ae6a202'; // باید از طریق متغیر محیطی تنظیم شود
+    this.API_URL = 'https://api.aimlapi.com/v1/chat/completions';
+    this.MODEL = 'openai/gpt-4.1-2025-04-14';
+    this.lastRequestTime = 0;
+    this.RATE_LIMIT = 1000; // 1 ثانیه بین هر درخواست
+    
+    this.initElements();
+    this.initEventListeners();
+    this.loadChatHistory();
+  }
 
-// بازیابی چت
-function loadChat() {
+  initElements() {
+    this.chatBody = document.getElementById('chat-body');
+    this.chatInput = document.getElementById('chat-input');
+    this.sendButton = document.getElementById('btn');
+    this.aiIntro = document.querySelector('.ai-intro');
+  }
+
+  initEventListeners() {
+    this.sendButton.addEventListener('click', () => this.sendMessage());
+    this.chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') this.sendMessage();
+    });
+  }
+
+  async sendMessage() {
+    const message = this.chatInput.value.trim();
+    if (!message) return;
+
+    // مدیریت نرخ ارسال
+    const now = Date.now();
+    if (now - this.lastRequestTime < this.RATE_LIMIT) {
+      this.showError('لطفاً بین ارسال پیام‌ها کمی صبر کنید');
+      return;
+    }
+    this.lastRequestTime = now;
+
+    // حذف معرفی اولیه اگر وجود دارد
+    if (this.aiIntro) {
+      this.aiIntro.remove();
+    }
+
+    // تغییر ظاهر دکمه
+    this.sendButton.style.background = '#111519';
+
+    // افزودن پیام کاربر
+    this.addUserMessage(message);
+    this.chatInput.value = '';
+
+    // نمایش حالت در حال تایپ
+    const typingIndicator = this.showTypingIndicator();
+
+    try {
+      const response = await this.fetchAIResponse(message);
+      this.addBotMessage(response);
+      this.saveChatHistory();
+    } catch (error) {
+      console.error('API Error:', error);
+      this.addBotMessage('متاسفم، مشکلی در ارتباط با سرور پیش آمده است. لطفاً دوباره تلاش کنید.');
+    } finally {
+      this.removeTypingIndicator(typingIndicator);
+      this.sendButton.style.background = "linear-gradient(135deg, #6e8efb, #a777e3)";
+    }
+  }
+
+  async fetchAIResponse(message) {
+    const requestData = {
+      model: this.MODEL,
+      messages: [
+        {
+          role: "system",
+          content: "You are an AI assistant who knows everything."
+        },
+        {
+          role: "user",
+          content: message
+        }
+      ]
+    };
+
+    const response = await fetch(this.API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.API_KEY}`
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'خطا در ارتباط با سرور');
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  }
+
+  addUserMessage(content) {
+    this.addMessage(content, 'user');
+  }
+
+  addBotMessage(content) {
+    this.addMessage(content, 'bot');
+  }
+
+  addMessage(content, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    
+    if (type === 'bot' && content.includes('```')) {
+      // فرمت‌دهی کدهای مارک‌داون
+      messageDiv.innerHTML = this.formatMarkdown(content);
+    } else {
+      const contentSpan = document.createElement('span');
+      contentSpan.className = 'message-content';
+      contentSpan.textContent = content;
+      messageDiv.appendChild(contentSpan);
+    }
+
+    if (type === 'bot') {
+      const copyButton = document.createElement('button');
+      copyButton.className = 'copy-btn';
+      copyButton.innerHTML = '📋';
+      copyButton.addEventListener('click', () => this.copyToClipboard(content));
+      messageDiv.appendChild(copyButton);
+    }
+
+    this.chatBody.appendChild(messageDiv);
+    this.scrollToBottom();
+  }
+
+  formatMarkdown(content) {
+    // پیاده‌سازی ساده فرمت‌دهی مارک‌داون
+    return content
+      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+
+  copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(btn => {
+          btn.textContent = '📋';
+          btn.style.color = '';
+        });
+        event.target.textContent = 'کپی شد!';
+        event.target.style.color = '#4CAF50';
+        setTimeout(() => {
+          event.target.textContent = '📋';
+          event.target.style.color = '';
+        }, 2000);
+      })
+      .catch(err => console.error('Failed to copy:', err));
+  }
+
+  showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot typing';
+    typingDiv.innerHTML = `
+      <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    `;
+    this.chatBody.appendChild(typingDiv);
+    this.scrollToBottom();
+    return typingDiv;
+  }
+
+  removeTypingIndicator(indicator) {
+    if (indicator && indicator.parentNode) {
+      indicator.remove();
+    }
+  }
+
+  scrollToBottom() {
+    this.chatBody.scrollTop = this.chatBody.scrollHeight;
+  }
+
+  saveChatHistory() {
+    localStorage.setItem('chatHistory', this.chatBody.innerHTML);
+  }
+
+  loadChatHistory() {
     const savedChat = localStorage.getItem('chatHistory');
     if (savedChat) {
-        document.getElementById('chat-body').innerHTML = savedChat;
+      this.chatBody.innerHTML = savedChat;
+      this.scrollToBottom();
     }
+  }
+
+  showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'message error';
+    errorDiv.textContent = message;
+    this.chatBody.appendChild(errorDiv);
+    this.scrollToBottom();
+  }
 }
 
-// فراخوانی هنگام لود صفحه
-document.addEventListener('DOMContentLoaded', loadChat);
-
-// ذخیره پس از هر پیام جدید
-
-    // ... کدهای ارسال پیام
-     // اضافه کردن این خط
-// تابع ارسال پیام (با تغییرات جدید)
-function sendMessage() {
-   
- const aiIntro = document.querySelector('.ai-intro');
-    if (aiIntro) {
-        aiIntro.remove();
-    }
- const btn = document.getElementById('btn');
- 
-    const input = document.getElementById('chat-input');
-    const messageu = input.value.trim();
-    if (messageu) {
-btn.style.background= '#111519'
-
-        // افزودن پیام کاربر به چت
-        const chatBody = document.getElementById('chat-body');
-        chatBody.innerHTML += `
-            <div class="message user">
-                <span class="message-content">
-                    ${messageu}
-                </span>
-            </div>
-        `;
-
-        // پاک کردن فیلد ورودی
-        input.value = '';
-
-        // نمایش حالت "در حال تایپ"
-        chatBody.innerHTML += `
-            <div class="message bot">
-                <div class="typing-indicator">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        `;
-
-        // اسکرول به پایین
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        // کلید API
-        const apiKey = '16d5de8540d3476b8d0b4d6ee2872bd5'; // جایگزین <YOUR_API_KEY> با کلید خود
-
-        // آدرس API
-        const apiUrl = 'https://api.aimlapi.com/v1/chat/completions'; // endpoint صحیح
-
-        // داده‌های درخواست
-        const requestData = {
-            model: "gpt-4-turbo-2024-04-09", // مدل مورد استفاده
-            messages: [
-                {
-                    role: "system",
-                    content: "You are an AI assistant who knows everything."
-                },
-                {
-                    role: "user",
-                    content: messageu
-                }
-            ]
-        };
-
-        // ارسال درخواست به API
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify(requestData)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`خطا: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // حذف حالت "در حال تایپ"
-            const typingIndicator = document.querySelector('.typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-
-            // افزودن پاسخ ربات به چت
-            const message = data.choices[0].message.content;
-            chatBody.innerHTML += `
-                <div class="message bot">
-                    <div class="message-content">
-                        ${message}
-                    </div>
-                </div>
-            `;
-btn.style.background ="linear-gradient(135deg, #6e8efb, #a777e3)" 
- saveChat();
-            // اسکرول به پایین
-            chatBody.scrollTop = chatBody.scrollHeight;
-        })
-        .catch(error => {
-            console.error('خطا در ارتباط با API:', error.response ? error.response.data : error.message);
-
-            // حذف حالت "در حال تایپ"
-            const typingIndicator = document.querySelector('.typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-
-            // بررسی Retry-After
-            if (error.response && error.response.headers) {
-                const retryAfter = error.response.headers['retry-after'];
-                if (retryAfter) {
-                    console.log(`لطفاً ${retryAfter} ثانیه صبر کنید و دوباره تلاش کنید.`);
-                }
-            }
-
-            // نمایش خطا به کاربر
-            chatBody.innerHTML += `
-                <div class="message bot">
-                    <div class="message-content">
-                        متاسفم، مشکلی در ارتباط با سرور پیش آمده است. لطفاً دوباره تلاش کنید.
-                    </div>
-                </div>
-            `;
-
-            // اسکرول به پایین
-            chatBody.scrollTop = chatBody.scrollHeight;
-        });
-    } 
-    
-}
+// راه‌اندازی چت هنگام لود صفحه
+document.addEventListener('DOMContentLoaded', () => {
+  const chat = new DeepomandChat();
+});
