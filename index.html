@@ -46,291 +46,419 @@
     }
     </script>
     
+    <meta name="description" content="چت‌بات هوشمند فارسی Deepomand - گفتگوی طبیعی با هوش مصنوعی پیشرفته">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    
     <style>
         :root {
-            --primary: #6e8efb;
-            --secondary: #a777e3;
-            --text: #2c3e50;
-            --text-light: #7f8c8d;
-            --bg: #f5f7fa;
-            --bg-secondary: #e4e8eb;
-            --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --radius: 12px;
-            --transition: all 0.3s ease;
+            --primary: #6c63ff;
+            --primary-dark: #564fd1;
+            --secondary: #ff6584;
+            --dark: #2d3748;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --dark-gray: #94a3b8;
         }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --text: #f5f7fa;
-                --text-light: #bdc3c7;
-                --bg: #1a1a1a;
-                --bg-secondary: #2d2d2d;
-                --white: #2d2d2d;
-                --shadow: 0 2px 10px rgba(0,0,0,0.3);
+         @media (prefers-color-scheme: dark) {
+            :root {         
+              --primary: #6c63ff;
+            --primary-dark: #564fd1;
+            --secondary: #ff6584;
+            --dark: #2d3748;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --dark-gray: #94a3b8;
+
             }
         }
-        
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
         body {
-            font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: Vazir, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
-        /* Header */
+        /* Header Styles */
         header {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            transition: var(--transition);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        @media (prefers-color-scheme: dark) {
-            header {
-                background: rgba(45,45,45,0.9);
-            }
-        }
-        
-        .container {
-            width: 100%;
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
+            position: relative;
+            z-index: 2;
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-inline: 10px;
-            gap: 0.5rem;
-        }
-        
-        .logo-secondary {
-            color: var(--text-light);
-            font-size: 1.2rem;
-        }
-        
-        /* Main Content */
-        main {
-            flex: 1;
-            padding-top: 5rem;
-        }
-        
-        .hero {
-            min-height: calc(100vh - 5rem);
-            display: flex;
-            align-items: center;
-            padding: 2rem 0;
-        }
-        
-        .hero-content {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 0 1rem;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+border-radius: 12px;
         }
         
         h1 {
-            font-size: clamp(2.2rem, 5vw, 3rem);
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
         
         .tagline {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            color: var(--text-light);
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
         
-        .divider {
-            width: 100px;
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 0.5rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background-color: #ff4d6d;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 2rem auto;
+            background: var(--primary);
+            margin: 1rem auto 0;
             border-radius: 2px;
         }
         
-        .description {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
-        /* Chat Button */
-        .chat-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4);
-            border: none;
-            cursor: pointer;
-            width: fit-content;
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-desc {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Demo Section */
+        .demo-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        .chat-btn:hover, .chat-btn:focus {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(110, 142, 251, 0.5);
+        #chat-box {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+        }
+        
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        
+        .bot-message {
+            background-color: var(--gray);
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        #chat-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        #send-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #send-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
         }
         
         /* Footer */
         footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            margin-top: auto;
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
         }
         
-        .footer-container {
+        .footer-links {
             display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            opacity: 1;
         }
         
         .copyright {
-            color: var(--text-light);
+            opacity: 0.7;
             font-size: 0.9rem;
         }
         
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
         }
-        
-        .hero-content > * {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.3s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.5s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.7s; }
-        .hero-content > *:nth-child(5) { animation-delay: 0.9s; }
     </style>
 </head>
 <body>
-    <!-- هدر -->
     <header>
-        <div class="container header-container">
-            <a href="/" class="logo">
-                دیپومند
-                
-            </a><span class="logo">deepomand</span>
+        <div class="header-content">
+            <img src="favicon.ico" alt="Deepomand Logo" class="logo">
+            <h1>Deepomand</h1>
+            <p class="tagline">چت‌بات هوش مصنوعی فارسی برای گفتگوی هوشمند و طبیعی</p>
+            <div>
+                <a href="#demo" class="cta-button">امتحان کنید</a>
+                <a href="#features" class="cta-button secondary-button">ویژگی‌ها</a>
+            </div>
         </div>
     </header>
     
-    <!-- محتوای اصلی -->
-    <main>
-        <section class="hero" aria-labelledby="main-heading">
-            <div class="hero-content">
-                <h1 id="main-heading">هوش مصنوعی ژرف‌اندیش</h1>
-                <p class="tagline">تجربه گفتگوی هوشمند با فناوری یادگیری عمیق</p>
+    <main class="container">
+        <section id="features">
+            <h2 class="section-title">چرا Deepomand؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">گفتگوی طبیعی فارسی</h3>
+                    <p class="feature-desc">تجربه مکالمه روان و طبیعی با هوش مصنوعی که فارسی را مثل انسان می‌فهمد و پاسخ می‌دهد</p>
+                </div>
                 
-                <div class="divider" aria-hidden="true"></div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">حریم خصوصی محور</h3>
+                    <p class="feature-desc">اطلاعات و گفتگوهای شما نزد ما امن است و برای تبلیغات استفاده نمی‌شود</p>
+                </div>
                 
-                <p class="description">
-                    دیپومند یک پلتفرم پیشرفته هوش مصنوعی است که با استفاده از الگوریتم‌های یادگیری عمیق، 
-                    قادر به درک و پردازش زبان طبیعی فارسی است. از چت بات هوشمند ما برای پاسخ به سوالات تخصصی، 
-                    تحلیل داده‌ها و خودکارسازی فرآیندها استفاده کنید.
-                </p>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">پاسخ‌دهی سریع</h3>
+                    <p class="feature-desc">فناوری پیشرفته پردازش زبان برای ارائه پاسخ‌های فوری و دقیق</p>
+                </div>
                 
-                <a href="chat.html" class="chat-btn" aria-label="شروع گفتگو با چت بات">
-                    شروع گفتگو
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">یادگیری مداوم</h3>
+                    <p class="feature-desc">هر روز باهوش‌تر می‌شود و دانش خود را به‌روز می‌کند</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">دسترسی همه‌جا</h3>
+                    <p class="feature-desc">در هر دستگاه و هر مکانی قابل استفاده است، حتی بدون نیاز به نصب</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3 class="feature-title">رایگان</h3>
+                    <p class="feature-desc">همین حالا شروع کنید، بدون نیاز به پرداخت هزینه</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="demo">
+            <h2 class="section-title">چت زنده با Deepomand</h2>
+            <div class="demo-container">
+                <div id="chat-box">
+                    <div class="message bot-message">سلام! من Deepomand هستم، چت‌بات هوش مصنوعی فارسی. چطور می‌تونم به شما کمک کنم؟</div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="پیام خود را بنویسید...">
+                    <button id="send-button">→</button>
+                </div>
             </div>
         </section>
     </main>
     
-    <!-- فوتر -->
     <footer>
-        <div class="container footer-container">
-            <p class="copyright">© ۱۴۰۴ دیپومند - تمام حقوق محفوظ است</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link">خانه</a>
+            <a href="#features" class="footer-link">ویژگی‌ها</a>
+            <a href="#demo" class="footer-link">دمو</a>
+            <a href="#" class="footer-link">درباره ما</a>
+            <a href="#" class="footer-link">تماس</a>
         </div>
+        <p class="copyright">© 2023 Deepomand. تمام حقوق محفوظ است.</p>
     </footer>
     
-    <!-- اسکریپت‌های بهینه‌شده -->
     <script>
-        // Load Google Analytics non-blocking
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        // Simple Chat Functionality
+        const chatBox = document.getElementById('chat-box');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
         
-        // Defer analytics loading
-        setTimeout(() => {
-            const script = document.createElement('script');
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXX';
-            script.async = true;
-            document.head.appendChild(script);
-            
-            gtag('config', 'G-XXXXXX', {
-                page_title: document.title,
-                page_path: window.location.pathname
-            });
-        }, 1000);
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
         
-        // Track button clicks
-        document.querySelector('.chat-btn').addEventListener('click', function() {
-            if (typeof gtag === 'function') {
-                gtag('event', 'navigate_to_chat', {
-                    'event_category': 'engagement',
-                    'event_label': 'homepage_chat_button'
-                });
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const responses = [
+                        "جالب است! می‌تونید بیشتر توضیح بدید؟",
+                        "متوجه شدم، سوال خوبی پرسیدید.",
+                        "پاسخ شما در حال پردازش است...",
+                        "من یک مدل هوش مصنوعی هستم و دانش من تا سال 2023 است.",
+                        "برای اطلاعات دقیق‌تر، لطفا سوال خود را جزئی‌تر بپرسید."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse, false);
+                }, 800);
+            }
+        }
+        
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
             }
         });
-        
-        // Add service worker for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registration successful');
-                }).catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
     </script>
 </body>
 </html>
