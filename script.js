@@ -1,43 +1,50 @@
-// اضافه کردن حالت loading و مدیریت بهتر خطاها
+// ========================
+// اتصال به API و مدیریت پیام
+// ========================
+
+const API_URL = "https://deepomand-api-1.onrender.com/chat";
+
+// ارسال پیام به API
 async function sendMessageToAI(message) {
     try {
-        const response = await fetch('https://deepomand-api-1.onrender.com', {
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                text: message
-            })
+            body: JSON.stringify({ text: message })
         });
-        
+
         if (!response.ok) {
             throw new Error(`خطای سرور: ${response.status}`);
         }
-        
+
         const data = await response.json();
         return data;
     } catch (error) {
         console.error("خطا در اتصال به API:", error);
         return {
             success: false,
-            response: "متأسفم، نتونستم به سرور وصل بشم!",
+            response: "⚠️ متأسفم، نتونستم به سرور وصل بشم!",
             error: error.message
         };
     }
 }
 
-// Simple Chat Functionality
+// ========================
+// مدیریت نمایش پیام‌ها
+// ========================
+
 const chatBox = document.getElementById('chat-box');
 const chatInput = document.getElementById('chat-input');
 const sendButton = document.getElementById('send-button');
 
-// اضافه کردن indicator در حال ارسال
+// اضافه کردن پیام به چت
 function addMessage(text, isUser, isThinking = false) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
     messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-    
+
     if (isThinking) {
         messageDiv.innerHTML = `
             <div class="thinking">
@@ -48,13 +55,13 @@ function addMessage(text, isUser, isThinking = false) {
     } else {
         messageDiv.textContent = text;
     }
-    
+
     chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop = chatBox.scrollHeight; // فقط هنگام اضافه شدن پیام
     return messageDiv;
 }
 
-// غیرفعال کردن فرم هنگام ارسال
+// فعال/غیرفعال کردن فرم
 function setFormState(isDisabled) {
     sendButton.disabled = isDisabled;
     chatInput.disabled = isDisabled;
@@ -62,28 +69,28 @@ function setFormState(isDisabled) {
     chatInput.style.cursor = isDisabled ? 'not-allowed' : 'text';
 }
 
+// ارسال پیام از کاربر
 async function sendMessage() {
     const message = chatInput.value.trim();
-    
     if (!message) return;
-    
-    // اضافه کردن پیام کاربر
+
+    // نمایش پیام کاربر
     addMessage(message, true);
     chatInput.value = '';
-    
-    // نمایش حالت در حال فکر کردن
+
+    // نمایش پیام در حال فکر کردن
     const thinkingMessage = addMessage('', false, true);
-    
+
     // غیرفعال کردن فرم
     setFormState(true);
-    
+
     try {
         // ارسال پیام به API و دریافت پاسخ
         const result = await sendMessageToAI(message);
-        
+
         // حذف پیام در حال فکر کردن
         thinkingMessage.remove();
-        
+
         if (result.success) {
             addMessage(result.response, false);
         } else {
@@ -100,7 +107,10 @@ async function sendMessage() {
     }
 }
 
-// اضافه کردن event listeners
+// ========================
+// Event Listeners
+// ========================
+
 sendButton.addEventListener('click', sendMessage);
 chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !sendButton.disabled) {
@@ -108,12 +118,19 @@ chatInput.addEventListener('keypress', (e) => {
     }
 });
 
-// تست اولیه اتصال به API
+// ========================
+// تست اتصال اولیه و دوره‌ای
+// ========================
+
 async function testConnection() {
     try {
-        const response = await fetch('https://deepomand-api-1.onrender.com');
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: "سلام" })
+        });
         if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-        
+
         const data = await response.json();
         console.log("✅ اتصال به API موفق:", data);
         return true;
@@ -124,30 +141,29 @@ async function testConnection() {
     }
 }
 
-// اتوماتیک تست کردن اتصال هر 30 ثانیه
 let isConnected = false;
 async function checkConnectionPeriodically() {
     isConnected = await testConnection();
     if (!isConnected) {
-        setTimeout(checkConnectionPeriodically, 30000); // هر 30 ثانیه چک کن
+        setTimeout(checkConnectionPeriodically, 30000); // هر 30 ثانیه
     }
 }
 
-// تست اتصال هنگام لود صفحه
+// ========================
+// DOMContentLoaded
+// ========================
+
 document.addEventListener('DOMContentLoaded', function() {
     checkConnectionPeriodically();
-    
-    // فوکوس خودکار روی input
     chatInput.focus();
-    
-    // اضافه کردن placeholder داینامیک
+
+    // placeholder داینامیک
     const placeholders = [
         "سوال خود را بپرسید...",
         "چطور می‌تونم کمک کنم؟",
         "چه سوالی دارید؟"
     ];
     let placeholderIndex = 0;
-    
     setInterval(() => {
         chatInput.placeholder = placeholders[placeholderIndex];
         placeholderIndex = (placeholderIndex + 1) % placeholders.length;
