@@ -1,464 +1,325 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="دیپومند - پلتفرم پیشرفته هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق و پردازش زبان طبیعی برای گفتگوی هوشمند">
-    <meta name="keywords" content="هوش مصنوعی فارسی, چت بات, دیپومند, یادگیری عمیق, پردازش زبان طبیعی, NLP">
-    <meta name="theme-color" content="#6e8efb">
-    <meta property="og:title" content="دیپومند | هوش مصنوعی ژرف‌اندیش">
-    <meta property="og:description" content="چت بات هوش مصنوعی فارسی با قابلیت‌های یادگیری عمیق">
-    <meta property="og:image" content="https://deepomand.com/images/og-image.jpg">
-    <meta property="og:url" content="https://deepomand.com">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://deepomand.com">
-    <link rel="alternate" hreflang="fa" href="https://deepomand.com/fa">
-    <title>دیپومند | هوش مصنوعی ژرف‌اندیش برای گفتگوی هوشمند</title>
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap"></noscript>
-    
-    <link rel="preload" href="favicon.ico" as="image" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "دیپومند",
-      "url": "https://deepomand.com",
-      "description": "پلتفرم هوش مصنوعی فارسی با قابلیت گفتگوی هوشمند",
-      "applicationCategory": "ChatbotApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "IRR"
-      },
-      "creator": {
-        "@type": "Organization",
-        "name": "دیپومند"
-      }
-    }
-    </script>
-    
-    <meta name="description" content="چت‌بات هوشمند فارسی Deepomand - گفتگوی طبیعی با هوش مصنوعی پیشرفته">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Fonts -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-    
-    <style>
-        :root {
-            --primary: #6c63ff;
-            --primary-dark: #564fd1;
-            --secondary: #ff6584;
-            --dark: #2d3748;
-            --light: #f8fafc;
-            --gray: #e2e8f0;
-            --dark-gray: #94a3b8;
-        }
-         @media (prefers-color-scheme: dark) {
-            :root {         
-              --primary: #6c63ff;
-            --primary-dark: #564fd1;
-            --secondary: #ff6584;
-            --dark: #2d3748;
-            --light: #f8fafc;
-            --gray: #e2e8f0;
-            --dark-gray: #94a3b8;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepomand | دستیار پزشکی هوش مصنوعی</title>
 
-            }
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Vazir, sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1.5rem;
-border-radius: 12px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: 0.5rem;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            background-color: #ff4d6d;
-        }
-        
-        .secondary-button {
-            background-color: transparent;
-            border: 2px solid white;
-        }
-        
-        .secondary-button:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        section {
-            padding: 4rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: var(--dark);
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .feature-desc {
-            color: var(--dark-gray);
-            font-size: 0.95rem;
-        }
-        
-        /* Demo Section */
-        .demo-container {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        #chat-box {
-            height: 400px;
-            overflow-y: auto;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border: 1px solid var(--gray);
-            border-radius: 8px;
-        }
-        
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            max-width: 80%;
-        }
-        
-        .user-message {
-            background-color: var(--primary);
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 0;
-        }
-        
-        .bot-message {
-            background-color: var(--gray);
-            margin-right: auto;
-            border-bottom-left-radius: 0;
-        }
-        
-        .chat-input-container {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        #chat-input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--gray);
-            border-radius: 50px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        #send-button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        #send-button:hover {
-            background-color: var(--primary-dark);
-            transform: scale(1.05);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-link {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            opacity: 1;
-        }
-        
-        .copyright {
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-        }
-    </style>
+  <!-- فونت -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --primary-dark: #564fd1;
+      --secondary: #ff6584;
+      --dark: #2d3748;
+      --light: #f8fafc;
+      --gray: #e2e8f0;
+      --dark-gray: #94a3b8;
+    }
+
+    body {
+      font-family: Vazir, sans-serif !important;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* دارک مود خودکار */
+    /* @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1a202c;
+        color: #f9fafb;
+      }
+      header {
+        background: linear-gradient(135deg, #2d3748, #1a202c);
+      }
+      .feature-card {
+        background: #2d3748;
+        color: #f9fafb;
+      }
+      .feature-desc { color: #cbd5e1; }
+      .demo-container {
+        background: #2d3748;
+      }
+      #chat-box {
+        background: #1f2937;
+        border-color: #374151;
+      }
+      .bot-message {
+        background: #374151;
+        color: #f9fafb;
+      }
+      .user-message {
+        background: #6c63ff;
+        color: #fff;
+      }
+      footer {
+        background: #111827;
+      }
+      .footer-link { color: #cbd5e1; }
+    } */
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section { padding: 4rem 0; }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0px 0px 10px -2px rgb(161, 171, 184);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.95rem;
+      color: var(--dark-gray);
+    }
+
+    .demo-container {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #chat-box {
+      height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      max-width: 80%;
+    }
+
+    .user-message {
+      background-color: var(--primary);
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+
+    .bot-message {
+      background-color: var(--gray);
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+    }
+
+    .chat-input-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    #chat-input {
+        font-family: Vazir;
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--gray);
+      border-radius: 50px;
+      font-size: 1rem;
+    }
+
+    #send-button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .footer-link:hover { opacity: 1; }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .tagline { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="favicon.ico" alt="Deepomand Logo" class="logo">
-            <h1>Deepomand</h1>
-            <p class="tagline">چت‌بات هوش مصنوعی فارسی برای گفتگوی هوشمند و طبیعی</p>
-            <div>
-                <a href="#demo" class="cta-button">امتحان کنید</a>
-                <a href="#features" class="cta-button secondary-button">ویژگی‌ها</a>
-            </div>
+  <header>
+    <img src="favicon.ico" alt="Deepomand Logo" class="logo">
+    <h1>Deepomand</h1>
+    <p class="tagline">دستیار هوش مصنوعی پزشکی برای بررسی بیماری‌ها و داروها</p>
+    <a href="#demo" class="cta-button">امتحان کنید</a>
+    <a href="#features" class="cta-button">ویژگی‌ها</a>
+  </header>
+
+  <main class="container">
+    <section id="features">
+      <h2 class="section-title">چرا Deepomand؟</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🩺</div>
+          <h3 class="feature-title">تشخیص علائم بیماری</h3>
+          <p class="feature-desc">با وارد کردن نام بیماری، اطلاعاتی درباره علائم و توضیحات پزشکی آن دریافت کنید.</p>
         </div>
-    </header>
-    
-    <main class="container">
-        <section id="features">
-            <h2 class="section-title">چرا Deepomand؟</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">گفتگوی طبیعی فارسی</h3>
-                    <p class="feature-desc">تجربه مکالمه روان و طبیعی با هوش مصنوعی که فارسی را مثل انسان می‌فهمد و پاسخ می‌دهد</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3 class="feature-title">حریم خصوصی محور</h3>
-                    <p class="feature-desc">اطلاعات و گفتگوهای شما نزد ما امن است و برای تبلیغات استفاده نمی‌شود</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">پاسخ‌دهی سریع</h3>
-                    <p class="feature-desc">فناوری پیشرفته پردازش زبان برای ارائه پاسخ‌های فوری و دقیق</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎓</div>
-                    <h3 class="feature-title">یادگیری مداوم</h3>
-                    <p class="feature-desc">هر روز باهوش‌تر می‌شود و دانش خود را به‌روز می‌کند</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3 class="feature-title">دسترسی همه‌جا</h3>
-                    <p class="feature-desc">در هر دستگاه و هر مکانی قابل استفاده است، حتی بدون نیاز به نصب</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🆓</div>
-                    <h3 class="feature-title">رایگان</h3>
-                    <p class="feature-desc">همین حالا شروع کنید، بدون نیاز به پرداخت هزینه</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="demo">
-            <h2 class="section-title">چت زنده با Deepomand</h2>
-            <div class="demo-container">
-                <div id="chat-box">
-                    <div class="message bot-message">سلام! من Deepomand هستم، چت‌بات هوش مصنوعی فارسی. چطور می‌تونم به شما کمک کنم؟</div>
-                </div>
-                <div class="chat-input-container">
-                    <input type="text" id="chat-input" placeholder="پیام خود را بنویسید...">
-                    <button id="send-button">→</button>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <div class="footer-links">
-            <a href="#" class="footer-link">خانه</a>
-            <a href="#features" class="footer-link">ویژگی‌ها</a>
-            <a href="#demo" class="footer-link">دمو</a>
-            <a href="#" class="footer-link">درباره ما</a>
-            <a href="#" class="footer-link">تماس</a>
+        <div class="feature-card">
+          <div class="feature-icon">💊</div>
+          <h3 class="feature-title">داروهای مناسب</h3>
+          <p class="feature-desc">Deepomand داروهای متداول مرتبط با بیماری‌ها را معرفی می‌کند (فقط جهت آگاهی، نه نسخه پزشکی).</p>
         </div>
-        <p class="copyright">© 2023 Deepomand. تمام حقوق محفوظ است.</p>
-    </footer>
-    
-    <script>
-        // Simple Chat Functionality
-        const chatBox = document.getElementById('chat-box');
-        const chatInput = document.getElementById('chat-input');
-        const sendButton = document.getElementById('send-button');
-        
-        function addMessage(text, isUser) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message');
-            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-            messageDiv.textContent = text;
-            chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-        
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (message) {
-                addMessage(message, true);
-                chatInput.value = '';
-                
-                // Simulate bot response
-                setTimeout(() => {
-                    const responses = [
-                        "جالب است! می‌تونید بیشتر توضیح بدید؟",
-                        "متوجه شدم، سوال خوبی پرسیدید.",
-                        "پاسخ شما در حال پردازش است...",
-                        "من یک مدل هوش مصنوعی هستم و دانش من تا سال 2023 است.",
-                        "برای اطلاعات دقیق‌تر، لطفا سوال خود را جزئی‌تر بپرسید."
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addMessage(randomResponse, false);
-                }, 800);
-            }
-        }
-        
-        sendButton.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    </script>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">پاسخ سریع</h3>
+          <p class="feature-desc">در چند ثانیه، توضیحات پزشکی و لیست داروها را مشاهده کنید.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3 class="feature-title">اطلاعات علمی</h3>
+          <p class="feature-desc">منابع علمی و داده‌های معتبر برای آگاهی بیشتر در اختیار شماست.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3 class="feature-title">دسترسی همیشگی</h3>
+          <p class="feature-desc">از هر کجا و هر دستگاهی به دستیار پزشکی خود دسترسی دارید.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🆓</div>
+          <h3 class="feature-title">کاملاً رایگان</h3>
+          <p class="feature-desc">بدون نیاز به ثبت‌نام یا پرداخت، همین حالا استفاده کنید.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <h2 class="section-title">چت زنده با Deepomand</h2>
+      <div class="demo-container">
+        <div id="chat-box">
+          <div class="message bot-message">
+            سلام! من Deepomand هستم، دستیار هوش مصنوعی پزشکی.  
+            اسم یک بیماری رو وارد کنید تا علائم و داروهای رایجش رو به شما بگم.
+          </div>
+        </div>
+        <div class="chat-input-container">
+          <input type="text" id="chat-input" placeholder="نام بیماری یا پرسش خود را بنویسید...">
+          <button id="send-button">→</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#" class="footer-link">خانه</a>
+      <a href="#features" class="footer-link">ویژگی‌ها</a>
+      <a href="#demo" class="footer-link">دمو</a>
+      <a href="about.html" class="footer-link">درباره ما</a>
+    </div>
+    <p>© 2025 Deepomand. تمام حقوق محفوظ است.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
