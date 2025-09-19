@@ -155,7 +155,7 @@ async function checkConnectionPeriodically() {
 
 document.addEventListener('DOMContentLoaded', function() {
     checkConnectionPeriodically();
-    chatInput.focus();
+    
 
     // placeholder داینامیک
     const placeholders = [
