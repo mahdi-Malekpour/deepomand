@@ -3,303 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deepomand | دستیار پزشکی هوش مصنوعی</title>
+  <title>دیپومند | دستیار پزشکی هوش مصنوعی</title>
+  <meta name="description" content="دیپومند؛ دستیار پزشکی هوش مصنوعی فارسی برای توضیح بیماری‌ها و داروها. ساخته شده توسط محمدمهدی ملک‌پور.">
 
   <!-- فونت -->
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
 
   <style>
     :root {
       --primary: #6c63ff;
-      --primary-dark: #564fd1;
       --secondary: #ff6584;
       --dark: #2d3748;
       --light: #f8fafc;
-      --gray: #e2e8f0;
-      --dark-gray: #94a3b8;
+      --muted: #6b7280;
+      --card: #ffffff;
     }
+    * { box-sizing: border-box; margin:0; padding:0; font-family: Vazir, sans-serif; }
+    body { background: var(--light); color: var(--dark); line-height:1.8; }
 
-    body {
-      font-family: Vazir, sans-serif !important;
-      background-color: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* دارک مود خودکار */
-    /* @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #1a202c;
-        color: #f9fafb;
-      }
-      header {
-        background: linear-gradient(135deg, #2d3748, #1a202c);
-      }
-      .feature-card {
-        background: #2d3748;
-        color: #f9fafb;
-      }
-      .feature-desc { color: #cbd5e1; }
-      .demo-container {
-        background: #2d3748;
-      }
-      #chat-box {
-        background: #1f2937;
-        border-color: #374151;
-      }
-      .bot-message {
-        background: #374151;
-        color: #f9fafb;
-      }
-      .user-message {
-        background: #6c63ff;
-        color: #fff;
-      }
-      footer {
-        background: #111827;
-      }
-      .footer-link { color: #cbd5e1; }
-    } */
-
+    /* Header */
     header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, var(--primary), #564fd1);
       color: white;
-      padding: 2rem 1rem;
+      padding: 4rem 1rem 5rem;
       text-align: center;
     }
+    header img.logo { width:80px; height:80px; margin-bottom:1rem; border-radius:12px; }
+    header h1 { font-size:2.3rem; margin-bottom:.7rem; }
+    .tagline { font-size:1.1rem; opacity:.9; margin-bottom:1.5rem; }
 
-    .logo {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 1rem;
-      border-radius: 12px;
+    .cta-buttons a {
+      display:inline-block;
+      margin:.4rem;
+      padding:.7rem 1.5rem;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:bold;
     }
+    .cta-main { background:var(--secondary); color:white; }
+    .cta-alt { background:white; color:var(--primary); }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    /* Container */
+    .container { max-width:1100px; margin:0 auto; padding:0 1rem; }
+    section { padding:3.5rem 0; }
+    .section-title { text-align:center; color:var(--primary); font-size:1.8rem; margin-bottom:2rem; }
 
-    .tagline {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: var(--secondary);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0.5rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    section { padding: 4rem 0; }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title:after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 1rem auto 0;
-      border-radius: 2px;
-    }
-
+    /* Features */
     .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.2rem;
     }
-
     .feature-card {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0px 0px 10px -2px rgb(161, 171, 184);
+      background:var(--card);
+      border-radius:12px;
+      padding:1.5rem;
+      text-align:center;
+      box-shadow:0 6px 18px rgba(17,24,39,0.05);
+      transition:.3s;
     }
+    .feature-card:hover { transform:translateY(-6px); }
+    .feature-icon { font-size:2rem; margin-bottom:.7rem; }
+    .feature-title { font-size:1.2rem; margin-bottom:.5rem; }
+    .feature-desc { font-size:.95rem; color:var(--muted); }
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .feature-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-desc {
-      font-size: 0.95rem;
-      color: var(--dark-gray);
-    }
-
+    /* Chat demo */
     .demo-container {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      background:var(--card);
+      border-radius:12px;
+      padding:1.5rem;
+      max-width:750px;
+      margin:0 auto;
+      box-shadow:0 6px 18px rgba(17,24,39,0.05);
     }
-
     #chat-box {
-      height: 400px;
-      overflow-y: auto;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border: 1px solid var(--gray);
-      border-radius: 8px;
+      height:360px;
+      overflow-y:auto;
+      margin-bottom:1rem;
+      padding:1rem;
+      border:1px solid #e5e7eb;
+      border-radius:8px;
+      background:var(--light);
     }
-
     .message {
-      margin-bottom: 1rem;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      max-width: 80%;
+      margin-bottom:.8rem;
+      padding:.7rem 1rem;
+      border-radius:10px;
+      max-width:80%;
+      font-size:.95rem;
     }
+    .bot-message { background:#e5e7eb; margin-right:auto; border-bottom-left-radius:0; }
+    .user-message { background:var(--primary); color:white; margin-left:auto; border-bottom-right-radius:0; }
 
-    .user-message {
-      background-color: var(--primary);
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 0;
-    }
+    .chat-input-container { display:flex; gap:.5rem; }
+    #chat-input { flex:1; padding:.8rem 1rem; border:1px solid #e5e7eb; border-radius:50px; font-size:.95rem; }
+    #send-button { background:var(--primary); color:white; border:none; border-radius:50%; width:46px; height:46px; cursor:pointer; }
 
-    .bot-message {
-      background-color: var(--gray);
-      margin-right: auto;
-      border-bottom-left-radius: 0;
-    }
-
-    .chat-input-container {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    #chat-input {
-        font-family: Vazir;
-      flex: 1;
-      padding: 0.8rem 1rem;
-      border: 1px solid var(--gray);
-      border-radius: 50px;
-      font-size: 1rem;
-    }
-
-    #send-button {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-    }
-
+    /* Footer */
     footer {
-      background-color: var(--dark);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
+      background:var(--dark);
+      color:white;
+      padding:2rem 1rem;
+      text-align:center;
+      font-size:.95rem;
+      margin-top:2rem;
     }
+    footer a { color:#d1d5db; text-decoration:none; margin:0 .8rem; }
+    footer a:hover { color:white; }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-link {
-      color: white;
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    .footer-link:hover { opacity: 1; }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      .tagline { font-size: 1rem; }
+    @media(max-width:768px){
+      header h1{ font-size:1.8rem; }
+      .tagline{ font-size:1rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="favicon.ico" alt="Deepomand Logo" class="logo">
-    <h1>Deepomand</h1>
-    <p class="tagline">دستیار هوش مصنوعی پزشکی برای بررسی بیماری‌ها و داروها</p>
-    <a href="#demo" class="cta-button">امتحان کنید</a>
-    <a href="#features" class="cta-button">ویژگی‌ها</a>
+    <img src="favicon.ico" alt="لوگو دیپومند" class="logo">
+    <h1>دیپومند</h1>
+    <p class="tagline">دستیار هوش مصنوعی پزشکی برای فارسی‌زبانان</p>
+    <div class="cta-buttons">
+      <a href="#demo" class="cta-main">شروع کنید</a>
+      <a href="https://mahdi-malekpour.github.io/deepomand/about/" class="cta-alt">درباره ما</a>
+    </div>
   </header>
 
   <main class="container">
     <section id="features">
-      <h2 class="section-title">چرا Deepomand؟</h2>
+      <h2 class="section-title">ویژگی‌های دیپومند</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🩺</div>
-          <h3 class="feature-title">تشخیص علائم بیماری</h3>
-          <p class="feature-desc">با وارد کردن نام بیماری، اطلاعاتی درباره علائم و توضیحات پزشکی آن دریافت کنید.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💊</div>
-          <h3 class="feature-title">داروهای مناسب</h3>
-          <p class="feature-desc">Deepomand داروهای متداول مرتبط با بیماری‌ها را معرفی می‌کند (فقط جهت آگاهی، نه نسخه پزشکی).</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3 class="feature-title">پاسخ سریع</h3>
-          <p class="feature-desc">در چند ثانیه، توضیحات پزشکی و لیست داروها را مشاهده کنید.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📚</div>
-          <h3 class="feature-title">اطلاعات علمی</h3>
-          <p class="feature-desc">منابع علمی و داده‌های معتبر برای آگاهی بیشتر در اختیار شماست.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <h3 class="feature-title">دسترسی همیشگی</h3>
-          <p class="feature-desc">از هر کجا و هر دستگاهی به دستیار پزشکی خود دسترسی دارید.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🆓</div>
-          <h3 class="feature-title">کاملاً رایگان</h3>
-          <p class="feature-desc">بدون نیاز به ثبت‌نام یا پرداخت، همین حالا استفاده کنید.</p>
-        </div>
+        <div class="feature-card"><div class="feature-icon">🩺</div><h3 class="feature-title">تشخیص علائم</h3><p class="feature-desc">نام بیماری را وارد کنید تا درباره علائم و توضیحات آن بخوانید.</p></div>
+        <div class="feature-card"><div class="feature-icon">💊</div><h3 class="feature-title">داروهای متداول</h3><p class="feature-desc">داروهای رایج مرتبط معرفی می‌شوند (فقط جهت آگاهی).</p></div>
+        <div class="feature-card"><div class="feature-icon">⚡</div><h3 class="feature-title">پاسخ سریع</h3><p class="feature-desc">در چند ثانیه اطلاعات کلیدی را دریافت کنید.</p></div>
+        <div class="feature-card"><div class="feature-icon">📚</div><h3 class="feature-title">منابع علمی</h3><p class="feature-desc">بر پایه داده‌های معتبر پزشکی.</p></div>
+        <div class="feature-card"><div class="feature-icon">🌐</div><h3 class="feature-title">دسترسی آسان</h3><p class="feature-desc">روی هر دستگاه و از هر مکان.</p></div>
+        <div class="feature-card"><div class="feature-icon">🆓</div><h3 class="feature-title">کاملاً رایگان</h3><p class="feature-desc">بدون نیاز به ثبت‌نام یا هزینه.</p></div>
       </div>
     </section>
 
     <section id="demo">
-      <h2 class="section-title">چت زنده با Deepomand</h2>
+      <h2 class="section-title">چت زنده با دیپومند</h2>
       <div class="demo-container">
         <div id="chat-box">
           <div class="message bot-message">
-            سلام! من Deepomand هستم، دستیار هوش مصنوعی پزشکی.  
-            اسم یک بیماری رو وارد کنید تا علائم و داروهای رایجش رو به شما بگم.
+            سلام! من دیپومند هستم. اسم یک بیماری را وارد کنید تا علائم و داروهای متداولش را برایتان بگویم.
           </div>
         </div>
         <div class="chat-input-container">
@@ -311,13 +158,13 @@
   </main>
 
   <footer>
-    <div class="footer-links">
-      <a href="#" class="footer-link">خانه</a>
-      <a href="#features" class="footer-link">ویژگی‌ها</a>
-      <a href="#demo" class="footer-link">دمو</a>
-      <a href="about.html" class="footer-link">درباره ما</a>
-    </div>
-    <p>© 2025 Deepomand. تمام حقوق محفوظ است.</p>
+    <p>
+      <a href="/">خانه</a> |
+      <a href="https://mahdi-malekpour.github.io/deepomand/about/">درباره</a>
+    </p>
+    <p style="margin-top:8px; font-size:.9rem; color:#d1d5db;">
+      © 2025 دیپومند — توسعه توسط محمدمهدی ملک‌پور
+    </p>
   </footer>
 
   <script src="script.js"></script>
